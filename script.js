@@ -38,16 +38,23 @@
   clearAllBtn.addEventListener("click", clearAll);
 
   // todoListにイベント委譲を設定（インラインイベントハンドラーの代替）
+
+  // todoId抽出のヘルパー関数
+  function getTodoIdFromEvent(e) {
+    const item = e.target.closest(".todo-item");
+    return item ? parseInt(item.dataset.todoId) : null;
+  }
+
   todoList.addEventListener("change", (e) => {
     if (e.target.classList.contains("todo-checkbox")) {
-      const todoId = parseInt(e.target.closest(".todo-item").dataset.todoId);
+      const todoId = getTodoIdFromEvent(e);
       toggleTodo(todoId);
     }
   });
   
   todoList.addEventListener("click", (e) => {
     if (e.target.closest(".delete-btn")) {
-      const todoId = parseInt(e.target.closest(".todo-item").dataset.todoId);
+      const todoId = getTodoIdFromEvent(e);
       deleteTodo(todoId);
     }
   });
