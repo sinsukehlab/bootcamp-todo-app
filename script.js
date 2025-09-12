@@ -38,7 +38,7 @@
   // todoId抽出のヘルパー関数
   function getTodoIdFromEvent(e) {
     const item = e.target.closest(".todo-item");
-    return item ? parseInt(item.dataset.todoId) : null;
+    return item ? parseInt(item.dataset.todoId, 10) : null;
   }
 
   todoList.addEventListener("change", (e) => {
